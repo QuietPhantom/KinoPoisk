@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="custom_spots_dialog" parent="android:Theme.DeviceDefault.Dialog.Alert">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">Loading…</item>
+        <item name="DialogSpotColor">@color/primaryColor</item>
+        <item name="DialogSpotCount">5</item>
+    </style>
+</resources>

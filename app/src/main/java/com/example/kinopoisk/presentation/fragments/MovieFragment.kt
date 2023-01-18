@@ -55,7 +55,7 @@ class MovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dialog = SpotsDialog.Builder().setCancelable(true).setContext(context).build()
+        dialog = SpotsDialog.Builder().setCancelable(true).setContext(context).setTheme(R.style.custom_spots_dialog).build()
 
         movieViewModel.initApi()
 
@@ -163,7 +163,7 @@ class MovieFragment : Fragment() {
             holder.name.text = moviesListAdapter.docs[position].name + " (" + moviesListAdapter.docs[position].year.toString() + ')'
             holder.description.text = moviesListAdapter.docs[position].description
             holder.subDescription.text = moviesListAdapter.docs[position].rating.kp + " kp | " + moviesListAdapter.docs[position].rating.imdb + " imdb"
-                    try {
+            try {
                 Picasso.get().load(moviesListAdapter.docs[position].poster.url).into(holder.poster)
             } catch (e: NullPointerException){
                 holder.poster.setImageResource(R.drawable.no_poster)
