@@ -1,4 +1,4 @@
-package com.example.kinopoisk.ui.home
+package com.example.kinopoisk.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

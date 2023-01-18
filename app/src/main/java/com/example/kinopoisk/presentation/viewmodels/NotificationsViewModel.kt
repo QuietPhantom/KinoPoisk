@@ -1,9 +1,9 @@
-package com.example.kinopoisk.ui.dashboard
+package com.example.kinopoisk.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class NotificationsViewModel : ViewModel() {
 
 }
