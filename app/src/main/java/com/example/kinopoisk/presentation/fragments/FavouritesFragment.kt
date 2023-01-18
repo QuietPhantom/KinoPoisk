@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.kinopoisk.databinding.FragmentHomeBinding
-import com.example.kinopoisk.presentation.viewmodels.HomeViewModel
+import com.example.kinopoisk.databinding.FragmentNotificationsBinding
+import com.example.kinopoisk.presentation.viewmodels.FavouritesViewModel
 
-class HomeFragment : Fragment() {
+class FavouritesFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,10 +19,10 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val favouritesViewModel =
+            ViewModelProvider(this).get(FavouritesViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.kinopoisk.presentation.fragments.HomeFragment"
+        android:name="com.example.kinopoisk.presentation.fragments.MovieFragment"
         android:label="@string/title_movie"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.kinopoisk.presentation.fragments.DashboardFragment"
+        android:name="com.example.kinopoisk.presentation.fragments.ActorsFragment"
         android:label="@string/title_actros"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.kinopoisk.presentation.fragments.NotificationsFragment"
+        android:name="com.example.kinopoisk.presentation.fragments.FavouritesFragment"
         android:label="@string/title_favourite"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.kinopoisk.databinding.FragmentDashboardBinding
-import com.example.kinopoisk.presentation.viewmodels.DashboardViewModel
+import com.example.kinopoisk.databinding.FragmentHomeBinding
+import com.example.kinopoisk.presentation.viewmodels.MovieViewModel
 
-class DashboardFragment : Fragment() {
+class MovieFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,10 +19,10 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val movieViewModel =
+            ViewModelProvider(this).get(MovieViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root

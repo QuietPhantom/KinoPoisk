@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.kinopoisk.databinding.FragmentNotificationsBinding
-import com.example.kinopoisk.presentation.viewmodels.NotificationsViewModel
+import com.example.kinopoisk.databinding.FragmentDashboardBinding
+import com.example.kinopoisk.presentation.viewmodels.ActorsViewModel
 
-class NotificationsFragment : Fragment() {
+class ActorsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,10 +19,10 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val actorsViewModel =
+            ViewModelProvider(this).get(ActorsViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
