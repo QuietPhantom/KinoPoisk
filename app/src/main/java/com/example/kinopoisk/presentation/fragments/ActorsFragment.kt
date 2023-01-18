@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.kinopoisk.databinding.FragmentDashboardBinding
+import com.example.kinopoisk.databinding.FragmentActorsBinding
 import com.example.kinopoisk.presentation.viewmodels.ActorsViewModel
 
 class ActorsFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentActorsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,7 +22,7 @@ class ActorsFragment : Fragment() {
         val actorsViewModel =
             ViewModelProvider(this).get(ActorsViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentActorsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root

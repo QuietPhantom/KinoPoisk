@@ -3,4 +3,9 @@
     <string name="title_movie">Movie/Serials</string>
     <string name="title_actros">Actors</string>
     <string name="title_favourite">Favourites</string>
+    <string name="movie_searchView_hint">Search by key words...</string>
+    <string name="search_null">Nothing found...</string>
+    <string name="search_bar_is_empty">Search bar is empty...</string>
+    <string name="page_up">Page up</string>
+    <string name="page_down">Page down</string>
 </resources>

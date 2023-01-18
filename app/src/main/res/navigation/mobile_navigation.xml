@@ -9,17 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="com.example.kinopoisk.presentation.fragments.MovieFragment"
         android:label="@string/title_movie"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_movie" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.kinopoisk.presentation.fragments.ActorsFragment"
         android:label="@string/title_actros"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_actors" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.kinopoisk.presentation.fragments.FavouritesFragment"
         android:label="@string/title_favourite"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_favourite" />
 </navigation>

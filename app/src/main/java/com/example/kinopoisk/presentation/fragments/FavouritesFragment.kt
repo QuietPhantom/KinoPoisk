@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.kinopoisk.databinding.FragmentNotificationsBinding
+import com.example.kinopoisk.databinding.FragmentFavouriteBinding
 import com.example.kinopoisk.presentation.viewmodels.FavouritesViewModel
 
 class FavouritesFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentFavouriteBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,7 +22,7 @@ class FavouritesFragment : Fragment() {
         val favouritesViewModel =
             ViewModelProvider(this).get(FavouritesViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
