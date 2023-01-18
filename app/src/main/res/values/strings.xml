@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">KinoPoisk</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_movie">Movie/Serials</string>
+    <string name="title_actros">Actors</string>
+    <string name="title_favourite">Favourites</string>
 </resources>
