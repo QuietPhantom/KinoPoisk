@@ -4,9 +4,10 @@
     <string name="title_movie">Кино/Сериалы</string>
     <string name="title_actros">Актёры</string>
     <string name="title_favourite">Избранное</string>
-    <string name="movie_searchView_hint">Поиск по ключевым словам...</string>
+    <string name="movie_searchView_hint">Поиск фильмов/сериалов по ключевым словам...</string>
     <string name="search_null">Ничего не найдено...</string>
     <string name="search_bar_is_empty">Поисковая строка пуста...</string>
     <string name="page_up">Страница вперёд</string>
     <string name="page_down">Страница назад</string>
+    <string name="actors_searchView_hint">Поиск актеров по имени...</string>
 </resources>

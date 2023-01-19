@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kinopoisk.R
-import com.example.kinopoisk.data.retrofit.model.RetrofitApiCallbackEntities
+import com.example.kinopoisk.data.retrofit.model.RetrofitApiCallbackEntitiesMovies
 import com.example.kinopoisk.databinding.FragmentMovieBinding
 import com.example.kinopoisk.presentation.viewmodels.MovieViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,15 +27,14 @@ class MovieFragment : Fragment() {
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
     private lateinit var movieViewModel: MovieViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewAdapter: MovieAdapter
-    private lateinit var recyclerViewLayoutManager: LinearLayoutManager
+    private lateinit var movieRecyclerView: RecyclerView
+    private lateinit var movieRecyclerViewAdapter: MovieAdapter
+    private lateinit var movieRecyclerViewLayoutManager: LinearLayoutManager
     private lateinit var dialog: AlertDialog
     private lateinit var searchBar: SearchView
     private lateinit var page_forward: FloatingActionButton
     private lateinit var page_back: FloatingActionButton
-    private var state: Parcelable? = null
-    private var search_query: String = ""
+    private var movieState: Parcelable? = null
     private var page: Int = 1
 
     override fun onCreateView(
@@ -59,26 +58,27 @@ class MovieFragment : Fragment() {
 
         movieViewModel.initApi()
 
-        recyclerView = view.findViewById(R.id.search_movies_list)
-        searchBar = view.findViewById(R.id.search_bar)
-        page_forward = view.findViewById(R.id.page_forward)
-        page_back= view.findViewById(R.id.page_back)
+        movieRecyclerView = view.findViewById(R.id.search_movies_list)
+        searchBar = view.findViewById(R.id.search_bar_movie)
+        page_forward = view.findViewById(R.id.page_forward_movie)
+        page_back= view.findViewById(R.id.page_back_movie)
 
         movieViewModel.livedata.observe(viewLifecycleOwner){
-            if (recyclerView.adapter == null) {
-                recyclerViewLayoutManager = LinearLayoutManager(context)
-                recyclerViewAdapter = MovieAdapter(it,
+            if (movieRecyclerView.adapter == null) {
+                movieRecyclerViewLayoutManager = LinearLayoutManager(context)
+                movieRecyclerViewAdapter = MovieAdapter(it,
                     object : OnRecycleViewListener {
-                        override fun onViewClick(titleId: Int) {
+                        override fun onViewClick(Id: Int) {
 
                         }
                     })
-                recyclerView.layoutManager = recyclerViewLayoutManager
-                recyclerView.adapter = recyclerViewAdapter
-                if (state != null) recyclerViewLayoutManager.onRestoreInstanceState(state)
+                movieRecyclerView.layoutManager = movieRecyclerViewLayoutManager
+                movieRecyclerView.adapter = movieRecyclerViewAdapter
+                if (movieState != null) movieRecyclerViewLayoutManager.onRestoreInstanceState(movieState)
             } else {
-                recyclerViewAdapter.setRetrofitData(it)
+                movieRecyclerViewAdapter.setRetrofitData(it)
             }
+
             if(it.docs.isEmpty()) Toast.makeText(context, resources.getString(R.string.search_null), Toast.LENGTH_SHORT).show()
 
             page = it.page
@@ -105,7 +105,6 @@ class MovieFragment : Fragment() {
                 if (!query.isNullOrBlank()) {
                     searchBar.clearFocus()
                     page = 1
-                    search_query = query
                     movieViewModel.getMoviesOrSeries(query, page)
                     dialog.show()
                 } else {
@@ -120,12 +119,12 @@ class MovieFragment : Fragment() {
         })
 
         page_forward.setOnClickListener {
-            movieViewModel.getMoviesOrSeries(search_query, page + 1)
+            movieViewModel.getMoviesOrSeries(searchBar.query.toString(), page + 1)
             dialog.show()
         }
 
         page_back.setOnClickListener {
-            movieViewModel.getMoviesOrSeries(search_query, page - 1)
+            movieViewModel.getMoviesOrSeries(searchBar.query.toString(), page - 1)
             dialog.show()
         }
 
@@ -133,7 +132,7 @@ class MovieFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        state = recyclerView.layoutManager?.onSaveInstanceState()
+        movieState = movieRecyclerView.layoutManager?.onSaveInstanceState()
     }
 
     override fun onDestroyView() {
@@ -142,29 +141,30 @@ class MovieFragment : Fragment() {
         _binding = null
     }
 
-    class MovieAdapter(private val titles: RetrofitApiCallbackEntities, private val listener: OnRecycleViewListener): RecyclerView.Adapter<MovieAdapter.TitlesViewHolder> (){
+    class MovieAdapter(private val titles: RetrofitApiCallbackEntitiesMovies, private val listener: OnRecycleViewListener): RecyclerView.Adapter<MovieAdapter.MoviesViewHolder> (){
 
-        private var moviesListAdapter: RetrofitApiCallbackEntities = this.titles
+        private var moviesListAdapter: RetrofitApiCallbackEntitiesMovies = this.titles
 
-        class TitlesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val name: TextView = itemView.findViewById(R.id.name)
             val description: TextView = itemView.findViewById(R.id.description)
             val subDescription: TextView = itemView.findViewById(R.id.subDescription)
             val poster: ImageView = itemView.findViewById(R.id.image)
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitlesViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.list_item, parent, false)
-            return TitlesViewHolder(view)
+            return MoviesViewHolder(view)
         }
 
-        override fun onBindViewHolder(holder: TitlesViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
             holder.name.text = moviesListAdapter.docs[position].name + " (" + moviesListAdapter.docs[position].year.toString() + ')'
             holder.description.text = moviesListAdapter.docs[position].description
             holder.subDescription.text = moviesListAdapter.docs[position].rating.kp + " kp | " + moviesListAdapter.docs[position].rating.imdb + " imdb"
             try {
-                Picasso.get().load(moviesListAdapter.docs[position].poster.url).into(holder.poster)
+                if(moviesListAdapter.docs[position].poster.url != null) Picasso.get().load(moviesListAdapter.docs[position].poster.url).into(holder.poster)
+                else holder.poster.setImageResource(R.drawable.no_poster)
             } catch (e: NullPointerException){
                 holder.poster.setImageResource(R.drawable.no_poster)
             }
@@ -177,13 +177,13 @@ class MovieFragment : Fragment() {
             return moviesListAdapter.docs.size
         }
 
-        fun setRetrofitData(titles: RetrofitApiCallbackEntities){
-            moviesListAdapter = titles
+        fun setRetrofitData(movies: RetrofitApiCallbackEntitiesMovies){
+            moviesListAdapter = movies
             notifyDataSetChanged()
         }
     }
 
     interface OnRecycleViewListener {
-        fun onViewClick(titleId: Int)
+        fun onViewClick(Id: Int)
     }
 }

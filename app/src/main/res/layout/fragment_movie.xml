@@ -7,7 +7,7 @@
     tools:context=".presentation.fragments.MovieFragment">
 
     <SearchView
-        android:id="@+id/search_bar"
+        android:id="@+id/search_bar_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -21,12 +21,12 @@
         android:id="@+id/search_movies_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/search_bar"
+        android:layout_below="@id/search_bar_movie"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/search_bar_movie" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/page_forward"
+        android:id="@+id/page_forward_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/page_back"
+        android:id="@+id/page_back_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

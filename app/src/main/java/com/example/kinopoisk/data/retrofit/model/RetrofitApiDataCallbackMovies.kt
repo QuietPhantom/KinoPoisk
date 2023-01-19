@@ -1,13 +1,13 @@
 package com.example.kinopoisk.data.retrofit.model
 
-data class RetrofitApiCallbackEntities(
-    val docs: List<RetrofitApiDataEntity>,
+data class RetrofitApiCallbackEntitiesMovies(
+    val docs: List<RetrofitApiDataEntityMovie>,
     val total: Int,
     val page: Int,
     val pages: Int
 )
 
-data class RetrofitApiDataEntity(
+data class RetrofitApiDataEntityMovie(
     val id: Int,
     val type: String,
     val name: String,
