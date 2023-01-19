@@ -10,4 +10,7 @@
     <string name="page_up">Страница вперёд</string>
     <string name="page_down">Страница назад</string>
     <string name="actors_searchView_hint">Поиск актеров по имени...</string>
+    <string name="add_element">+</string>
+    <string name="delete_element">-</string>
+    <string name="title_movie_or_series">Фильм или сериал</string>
 </resources>

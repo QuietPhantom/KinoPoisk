@@ -1,0 +1,147 @@
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.fragments.ElementFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/movieImageCard"
+            android:layout_width="170dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/movieImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/slogan"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@+id/ageRating"
+            app:layout_constraintTop_toBottomOf="@+id/MovieName" />
+
+        <TextView
+            android:id="@+id/Rating"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/Dates"
+            app:layout_constraintTop_toBottomOf="@+id/ageRating" />
+
+        <TextView
+            android:id="@+id/Dates"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/Count"
+            app:layout_constraintTop_toBottomOf="@+id/Rating" />
+
+        <TextView
+            android:id="@+id/ageRating"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/Rating"
+            app:layout_constraintTop_toBottomOf="@+id/slogan" />
+
+        <TextView
+            android:id="@+id/Count"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/StatusAndType"
+            app:layout_constraintTop_toBottomOf="@+id/Dates" />
+
+        <TextView
+            android:id="@+id/StatusAndType"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Count" />
+
+        <TextView
+            android:id="@+id/MovieName"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/slogan"
+            app:layout_constraintTop_toBottomOf="@+id/movieImageCard" />
+
+
+        <com.ms.square.android.expandabletextview.ExpandableTextView
+            android:id="@+id/expand_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:animDuration="100"
+            app:maxCollapsedLines="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StatusAndType"
+            app:layout_constraintVertical_bias="0.0">
+            <TextView
+                android:id="@+id/expandable_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp" />
+
+            <ImageButton
+                android:id="@id/expand_collapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:background="@android:color/transparent" />
+
+        </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+        <Button
+            android:id="@+id/addMovie"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/add_element"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/movieImageCard"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/deleteMovie"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/delete_element"
+            app:layout_constraintStart_toStartOf="@+id/addMovie"
+            app:layout_constraintTop_toBottomOf="@+id/addMovie" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

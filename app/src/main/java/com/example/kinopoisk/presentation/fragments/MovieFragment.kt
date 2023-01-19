@@ -12,12 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kinopoisk.R
 import com.example.kinopoisk.data.retrofit.model.RetrofitApiCallbackEntitiesMovies
 import com.example.kinopoisk.databinding.FragmentMovieBinding
 import com.example.kinopoisk.presentation.viewmodels.MovieViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import dmax.dialog.SpotsDialog
@@ -69,7 +71,11 @@ class MovieFragment : Fragment() {
                 movieRecyclerViewAdapter = MovieAdapter(it,
                     object : OnRecycleViewListener {
                         override fun onViewClick(Id: Int) {
-
+                            val bundle = Bundle()
+                            bundle.putInt("elementId", Id)
+                            view.findNavController().navigate(R.id.action_navigation_home_to_movieelementFragment, bundle)
+                            requireActivity().findViewById<BottomNavigationView>(R.id.nav_view).menu.findItem(R.id.navigation_actors).isEnabled = false
+                            requireActivity().findViewById<BottomNavigationView>(R.id.nav_view).menu.findItem(R.id.navigation_favourites).isEnabled = false
                         }
                     })
                 movieRecyclerView.layoutManager = movieRecyclerViewLayoutManager
@@ -141,9 +147,9 @@ class MovieFragment : Fragment() {
         _binding = null
     }
 
-    class MovieAdapter(private val titles: RetrofitApiCallbackEntitiesMovies, private val listener: OnRecycleViewListener): RecyclerView.Adapter<MovieAdapter.MoviesViewHolder> (){
+    class MovieAdapter(private val movies: RetrofitApiCallbackEntitiesMovies, private val listener: OnRecycleViewListener): RecyclerView.Adapter<MovieAdapter.MoviesViewHolder> (){
 
-        private var moviesListAdapter: RetrofitApiCallbackEntitiesMovies = this.titles
+        private var moviesListAdapter: RetrofitApiCallbackEntitiesMovies = this.movies
 
         class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val name: TextView = itemView.findViewById(R.id.name)

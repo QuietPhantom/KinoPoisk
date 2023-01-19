@@ -9,4 +9,7 @@
     <string name="page_up">Page up</string>
     <string name="page_down">Page down</string>
     <string name="actors_searchView_hint">Search actrors by name...</string>
+    <string name="add_element">+</string>
+    <string name="delete_element">-</string>
+    <string name="title_movie_or_series">Movie or series</string>
 </resources>

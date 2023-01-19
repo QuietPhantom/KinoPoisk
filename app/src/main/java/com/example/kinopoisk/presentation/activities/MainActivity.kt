@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kinopoisk.R
@@ -17,6 +18,7 @@ import com.example.kinopoisk.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +31,9 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_movies_or_serials, R.id.navigation_actors, R.id.navigation_favourites
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -50,5 +52,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        onNavigationMenu()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        binding.navView.menu.findItem(R.id.navigation_movies_or_serials).isEnabled = true
+        binding.navView.menu.findItem(R.id.navigation_actors).isEnabled = true
+        binding.navView.menu.findItem(R.id.navigation_favourites).isEnabled = true
+    }
+
+    private fun onNavigationMenu(){
+        binding.navView.menu.findItem(R.id.navigation_movies_or_serials).isEnabled = true
+        binding.navView.menu.findItem(R.id.navigation_actors).isEnabled = true
+        binding.navView.menu.findItem(R.id.navigation_favourites).isEnabled = true
     }
 }

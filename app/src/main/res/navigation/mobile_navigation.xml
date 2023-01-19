@@ -3,23 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_movies_or_serials">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_movies_or_serials"
         android:name="com.example.kinopoisk.presentation.fragments.MovieFragment"
         android:label="@string/title_movie"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie" >
+        <action
+            android:id="@+id/action_navigation_home_to_movieelementFragment"
+            app:destination="@id/movieelementFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_actors"
         android:name="com.example.kinopoisk.presentation.fragments.ActorsFragment"
         android:label="@string/title_actros"
         tools:layout="@layout/fragment_actors" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_favourites"
         android:name="com.example.kinopoisk.presentation.fragments.FavouritesFragment"
         android:label="@string/title_favourite"
         tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/movieelementFragment"
+        android:name="com.example.kinopoisk.presentation.fragments.MovieElementFragment"
+        android:label="@string/title_movie_or_series"
+        tools:layout="@layout/fragment_movie_element" />
 </navigation>
