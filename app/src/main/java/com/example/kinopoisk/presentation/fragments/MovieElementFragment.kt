@@ -32,6 +32,7 @@ class MovieElementFragment : Fragment() {
     private lateinit var MovieSaveInformation: MovieEntity
     private lateinit var MovieName: TextView
     private lateinit var Genre: TextView
+    private lateinit var Slogan: TextView
     private lateinit var Dates: TextView
     private lateinit var Rating: TextView
     private lateinit var AgeRating: TextView
@@ -58,7 +59,8 @@ class MovieElementFragment : Fragment() {
         dialog = SpotsDialog.Builder().setCancelable(true).setContext(context).setTheme(R.style.custom_spots_dialog).build()
 
         MovieName = view.findViewById(R.id.MovieName)
-        Genre = view.findViewById(R.id.slogan)
+        Genre = view.findViewById(R.id.Genres)
+        Slogan = view.findViewById(R.id.Slogan)
         Dates = view.findViewById(R.id.Dates)
         Rating = view.findViewById(R.id.Rating)
         AgeRating = view.findViewById(R.id.ageRating)
@@ -82,16 +84,17 @@ class MovieElementFragment : Fragment() {
             var summaryGenres: String = ""
             for (genre in 0 until it.genres.size){
                 summaryGenres += if (genre == it.genres.size-1) "${it.genres[genre].name} "
-                else "${it.genres[genre].name}/ "
+                else "${it.genres[genre].name} / "
             }
             Genre.text = summaryGenres
 
+            Slogan.text = it.slogan
             MovieName.text = it.name + " (" + it.year + ") "
-            Dates.text = it.createDate.substringBefore('T')
             Rating.text = it.rating.kp + " kp | " + it.rating.imdb + " imdb | " + it.rating.await + " await | " + it.rating.filmCritics + " FM "
-            AgeRating.text = it.ratingMpaa + " (" +  it.ageRating + "+)"
-            Count.text = it.fees.world.value + it.fees.world.currency
-            StatusAndType.text = it.status + " " + it.type
+            AgeRating.text = resources.getString(R.string.age_rating) + ": " + it.ratingMpaa.uppercase() + " (" +  it.ageRating + "+)"
+            Count.text = resources.getString(R.string.fees) + ": " + it.fees.world.value + it.fees.world.currency
+            Dates.text = resources.getString(R.string.release_date) + ": " + it.createDate.substringBefore('T')
+            StatusAndType.text = resources.getString(R.string.status) + ": " + it.status + " " + resources.getString(R.string.type) + ": " + it.type
             FullDescription.text = it.description
             MovieSaveInformation = MovieEntity(it.id, it.name, it.year, it.description, it.rating.kp, it.rating.imdb, it.poster.url)
             dialog.dismiss()

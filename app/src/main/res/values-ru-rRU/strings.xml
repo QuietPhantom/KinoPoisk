@@ -10,7 +10,13 @@
     <string name="page_up">Страница вперёд</string>
     <string name="page_down">Страница назад</string>
     <string name="actors_searchView_hint">Поиск актеров по имени...</string>
-    <string name="add_element">+</string>
-    <string name="delete_element">-</string>
+    <string name="add_element">Добавить в избранное</string>
+    <string name="delete_element">Удалить из избранного</string>
     <string name="title_movie_or_series">Фильм или сериал</string>
+    <string name="age_rating">Возрастной рейтинг</string>
+    <string name="release_date">Дата выхода</string>
+    <string name="fees">Сборы</string>
+    <string name="status">Статус</string>
+    <string name="type">Тип</string>
+    <string name="search_bar_hint_favourites">"Поиск по ключевым словам в названии "</string>
 </resources>

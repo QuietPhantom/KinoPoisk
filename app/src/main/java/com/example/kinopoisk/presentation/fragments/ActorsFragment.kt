@@ -66,12 +66,7 @@ class ActorsFragment : Fragment() {
         actorsViewModel.livedata.observe(viewLifecycleOwner){
             if (actorsRecyclerView.adapter == null) {
                 actorsRecyclerViewLayoutManager = GridLayoutManager(view.context, 2)
-                actorsRecyclerViewAdapter = ActorsAdapter(it,
-                    object : OnRecycleViewListener {
-                        override fun onViewClick(Id: Int) {
-
-                        }
-                    })
+                actorsRecyclerViewAdapter = ActorsAdapter(it)
                 actorsRecyclerView.layoutManager = actorsRecyclerViewLayoutManager
                 actorsRecyclerView.adapter = actorsRecyclerViewAdapter
                 if (actorsState != null) actorsRecyclerViewLayoutManager.onRestoreInstanceState(actorsState)
@@ -80,7 +75,7 @@ class ActorsFragment : Fragment() {
             }
 
             if(it.docs.isEmpty()) Toast.makeText(context, resources.getString(R.string.search_null), Toast.LENGTH_SHORT).show()
-
+            requireActivity().resources
             page = it.page
 
             if (page < it.pages && page > 1) {
@@ -140,13 +135,14 @@ class ActorsFragment : Fragment() {
         _binding = null
     }
 
-    class ActorsAdapter(private val actors: RetrofitApiCallbackEntitiesActors, private val listener: OnRecycleViewListener): RecyclerView.Adapter<ActorsAdapter.ActorsViewHolder> (){
+    class ActorsAdapter(private val actors: RetrofitApiCallbackEntitiesActors): RecyclerView.Adapter<ActorsAdapter.ActorsViewHolder> (){
 
         private var actorsListAdapter: RetrofitApiCallbackEntitiesActors = this.actors
 
         class ActorsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val name: TextView = itemView.findViewById(R.id.NameCardView)
             val image: ImageView = itemView.findViewById(R.id.PhotoCardView)
+            val descriptopn: TextView = itemView.findViewById(R.id.DescriptionCardView)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorsViewHolder {
@@ -159,10 +155,7 @@ class ActorsFragment : Fragment() {
             holder.name.text = actorsListAdapter.docs[position].name
             if (actorsListAdapter.docs[position].photo != null) Picasso.get().load(actorsListAdapter.docs[position].photo).into(holder.image)
             else holder.image.setImageResource(R.drawable.no_poster)
-
-            holder.itemView.setOnClickListener {
-                listener.onViewClick(actorsListAdapter.docs[position].id)
-            }
+            holder.descriptopn.text = actorsListAdapter.docs[position].sex + " (" + actorsListAdapter.docs[position].age + ")"
         }
 
         override fun getItemCount(): Int {
@@ -173,10 +166,6 @@ class ActorsFragment : Fragment() {
             actorsListAdapter = actors
             notifyDataSetChanged()
         }
-    }
-
-    interface OnRecycleViewListener {
-        fun onViewClick(Id: Int)
     }
 
 }

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:iconifiedByDefault="false"
-        android:queryHint="@string/movie_searchView_hint"
+        android:queryHint="@string/search_bar_hint_favourites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

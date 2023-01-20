@@ -14,7 +14,7 @@
             android:layout_width="170dp"
             android:layout_height="240dp"
             android:layout_marginTop="16dp"
-            app:cardCornerRadius="15dp"
+            app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -28,19 +28,46 @@
                 android:scaleType="centerCrop"/>
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/MovieName"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/Genres"
+            app:layout_constraintTop_toBottomOf="@+id/addMovie" />
 
         <TextView
-            android:id="@+id/slogan"
-            android:layout_width="350dp"
+            android:id="@+id/Genres"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@+id/ageRating"
+            app:layout_constraintStart_toStartOf="@+id/Slogan"
             app:layout_constraintTop_toBottomOf="@+id/MovieName" />
 
         <TextView
+            android:id="@+id/Slogan"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@+id/Rating"
+            app:layout_constraintTop_toBottomOf="@+id/Genres" />
+
+        <TextView
+            android:id="@+id/ageRating"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="@+id/Rating"
+            app:layout_constraintTop_toBottomOf="@+id/Slogan" />
+
+        <TextView
             android:id="@+id/Rating"
-            android:layout_width="350dp"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="18dp"
@@ -49,7 +76,7 @@
 
         <TextView
             android:id="@+id/Dates"
-            android:layout_width="350dp"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="18dp"
@@ -57,17 +84,8 @@
             app:layout_constraintTop_toBottomOf="@+id/Rating" />
 
         <TextView
-            android:id="@+id/ageRating"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/Rating"
-            app:layout_constraintTop_toBottomOf="@+id/slogan" />
-
-        <TextView
             android:id="@+id/Count"
-            android:layout_width="350dp"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="18dp"
@@ -76,23 +94,13 @@
 
         <TextView
             android:id="@+id/StatusAndType"
-            android:layout_width="350dp"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Count" />
-
-        <TextView
-            android:id="@+id/MovieName"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/slogan"
-            app:layout_constraintTop_toBottomOf="@+id/movieImageCard" />
 
 
         <com.ms.square.android.expandabletextview.ExpandableTextView
@@ -115,8 +123,8 @@
 
             <ImageButton
                 android:id="@id/expand_collapse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center|bottom"
                 android:background="@android:color/transparent" />
 
@@ -124,24 +132,24 @@
 
         <Button
             android:id="@+id/addMovie"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
             android:text="@string/add_element"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/movieImageCard"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/deleteMovie"
+            app:layout_constraintHorizontal_bias="0.873"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieImageCard" />
 
         <Button
             android:id="@+id/deleteMovie"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
             android:text="@string/delete_element"
-            app:layout_constraintStart_toStartOf="@+id/addMovie"
-            app:layout_constraintTop_toBottomOf="@+id/addMovie" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieImageCard" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

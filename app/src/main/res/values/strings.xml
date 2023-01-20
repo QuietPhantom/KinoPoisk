@@ -9,7 +9,13 @@
     <string name="page_up">Page up</string>
     <string name="page_down">Page down</string>
     <string name="actors_searchView_hint">Search actrors by name...</string>
-    <string name="add_element">+</string>
-    <string name="delete_element">-</string>
+    <string name="add_element">Add to favourite</string>
+    <string name="delete_element">Delete from favourite</string>
     <string name="title_movie_or_series">Movie or series</string>
+    <string name="age_rating">Age rating</string>
+    <string name="release_date">Release date</string>
+    <string name="fees">Fees</string>
+    <string name="status">Status</string>
+    <string name="type">Type</string>
+    <string name="search_bar_hint_favourites">Search by keywords in the name</string>
 </resources>
