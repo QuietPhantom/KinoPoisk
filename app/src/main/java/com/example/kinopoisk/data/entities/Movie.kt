@@ -11,8 +11,9 @@ data class Movie(
     val year: Int,
     val description: String,
     val raiting_kp: String,
-    val raiting_imdb: String
+    val raiting_imdb: String,
+    val poster: String
 )
 {
-    fun toMovieEntity() = MovieEntity(id, name, year, description, raiting_kp, raiting_imdb)
+    fun toMovieEntity() = MovieEntity(id, name, year, description, raiting_kp, raiting_imdb, poster)
 }

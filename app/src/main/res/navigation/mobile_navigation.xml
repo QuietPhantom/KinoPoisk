@@ -25,7 +25,11 @@
         android:id="@+id/navigation_favourites"
         android:name="com.example.kinopoisk.presentation.fragments.FavouritesFragment"
         android:label="@string/title_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_navigation_favourites_to_movieelementFragment"
+            app:destination="@id/movieelementFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieelementFragment"
         android:name="com.example.kinopoisk.presentation.fragments.MovieElementFragment"

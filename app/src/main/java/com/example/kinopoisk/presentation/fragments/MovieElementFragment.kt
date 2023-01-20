@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import com.example.kinopoisk.presentation.viewmodels.MovieElementViewModel
 import com.example.kinopoisk.R
 import com.example.kinopoisk.businesslogic.entities.MovieEntity
 import com.example.kinopoisk.data.Application
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ms.square.android.expandabletextview.ExpandableTextView
 import com.squareup.picasso.Picasso
 import dmax.dialog.SpotsDialog
@@ -31,7 +31,7 @@ class MovieElementFragment : Fragment() {
     private var MovieId: Int = 1
     private lateinit var MovieSaveInformation: MovieEntity
     private lateinit var MovieName: TextView
-    private lateinit var Slogan: TextView
+    private lateinit var Genre: TextView
     private lateinit var Dates: TextView
     private lateinit var Rating: TextView
     private lateinit var AgeRating: TextView
@@ -58,7 +58,7 @@ class MovieElementFragment : Fragment() {
         dialog = SpotsDialog.Builder().setCancelable(true).setContext(context).setTheme(R.style.custom_spots_dialog).build()
 
         MovieName = view.findViewById(R.id.MovieName)
-        Slogan = view.findViewById(R.id.slogan)
+        Genre = view.findViewById(R.id.slogan)
         Dates = view.findViewById(R.id.Dates)
         Rating = view.findViewById(R.id.Rating)
         AgeRating = view.findViewById(R.id.ageRating)
@@ -78,15 +78,22 @@ class MovieElementFragment : Fragment() {
 
         MovieViewModel.livedata.observe(viewLifecycleOwner){
             Picasso.get().load(it.poster.url).into(MoviePoster)
+
+            var summaryGenres: String = ""
+            for (genre in 0 until it.genres.size){
+                summaryGenres += if (genre == it.genres.size-1) "${it.genres[genre].name} "
+                else "${it.genres[genre].name}/ "
+            }
+            Genre.text = summaryGenres
+
             MovieName.text = it.name + " (" + it.year + ") "
-            Slogan.text = it.slogan
             Dates.text = it.createDate.substringBefore('T')
             Rating.text = it.rating.kp + " kp | " + it.rating.imdb + " imdb | " + it.rating.await + " await | " + it.rating.filmCritics + " FM "
             AgeRating.text = it.ratingMpaa + " (" +  it.ageRating + "+)"
             Count.text = it.fees.world.value + it.fees.world.currency
             StatusAndType.text = it.status + " " + it.type
             FullDescription.text = it.description
-            MovieSaveInformation = MovieEntity(it.id, it.name, it.year, it.description, it.rating.kp, it.rating.imdb)
+            MovieSaveInformation = MovieEntity(it.id, it.name, it.year, it.description, it.rating.kp, it.rating.imdb, it.poster.url)
             dialog.dismiss()
         }
 
@@ -98,6 +105,7 @@ class MovieElementFragment : Fragment() {
                 MovieViewModel.saveMovie(MovieSaveInformation)
                 AddMovie.isEnabled = false
                 DeleteMovie.isEnabled = true
+                requireActivity().findViewById<BottomNavigationView>(R.id.nav_view).getOrCreateBadge(R.id.navigation_favourites).number += 1
             }
         }
 

@@ -60,9 +60,9 @@ class MovieFragment : Fragment() {
 
         movieViewModel.initApi()
 
-        movieRecyclerView = view.findViewById(R.id.search_movies_list)
-        searchBar = view.findViewById(R.id.search_bar_movie)
-        page_forward = view.findViewById(R.id.page_forward_movie)
+        movieRecyclerView = view.findViewById(R.id.search_movies_list_db)
+        searchBar = view.findViewById(R.id.search_bar_movie_db)
+        page_forward = view.findViewById(R.id.page_forward_movie_db)
         page_back= view.findViewById(R.id.page_back_movie)
 
         movieViewModel.livedata.observe(viewLifecycleOwner){

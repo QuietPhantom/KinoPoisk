@@ -56,18 +56,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        onNavigationMenu()
+        turnOnNavigationMenu()
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        binding.navView.menu.findItem(R.id.navigation_movies_or_serials).isEnabled = true
-        binding.navView.menu.findItem(R.id.navigation_actors).isEnabled = true
-        binding.navView.menu.findItem(R.id.navigation_favourites).isEnabled = true
+        turnOnNavigationMenu()
     }
 
-    private fun onNavigationMenu(){
+    private fun turnOnNavigationMenu(){
         binding.navView.menu.findItem(R.id.navigation_movies_or_serials).isEnabled = true
         binding.navView.menu.findItem(R.id.navigation_actors).isEnabled = true
         binding.navView.menu.findItem(R.id.navigation_favourites).isEnabled = true
